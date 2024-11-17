@@ -1,0 +1,58 @@
+/* Header.css */
+
+.app-header {
+    background-color: #282c34; /* Dark background for navbar */
+    color: rgba(253, 149, 149, 0.473);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* This will push the h1 to the left and nav to the right */
+    align-items: center;
+    position: fixed; /* Fix the navbar at the top */
+    top: 0; /* Align at the top of the page */
+    left: 0; /* Align to the left edge */
+    width: 100%; /* Make the navbar span the full width */
+    z-index: 1000; /* Ensure it stays above other content */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+  }
+  
+  .app-header h1 {
+    margin: 0; /* Reset margins for h1 */
+    font-size: 24px;
+    color: white;
+    margin-left: 0px;
+
+  }
+  
+  nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+    border-radius: 5px; /* Rounded corners for the links */
+  }
+  
+  nav a:hover {
+    background-color: #4c8bf5;
+  }
+  
+  .logout-button {
+    padding: 8px 15px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #e53935;
+  }
+  

@@ -1,0 +1,217 @@
+/* LoginPage.css */
+
+* {
+ 
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #eaf6f9;
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+/* Main Container */
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+              url('https://example.com/modern-abstract-background.jpg'); /* Replace with a modern abstract design */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 20px;
+}
+
+/* Page Heading */
+h1 {
+  font-size: 2.5rem;
+  color: #34495e;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  width: 80px;
+  height: 3px;
+  /* background-color: #3498db; */
+  display: block;
+  margin: 10px auto 0 auto;
+  border-radius: 5px;
+}
+
+/* Form Styling */
+form {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+input {
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+}
+
+button {
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+button:nth-child(2) {
+  margin-top: 1rem;
+  background-color: #7f8c8d;
+}
+
+button:nth-child(2):hover {
+  background-color: #95a5a6;
+  color: #fff;
+}
+
+/* Error Popup */
+.error-popup {
+  position: fixed;
+  top: 20px; /* Position near the top */
+  right: 20px; /* Align to the right */
+  background: #e74c3c;
+  color: #fff;
+  padding: 1.5rem 2rem;
+  width: 90%; /* Responsive width for smaller screens */
+  max-width: 200px; /* Maximum width for larger screens */
+  min-height: 20px; /* Minimum height for proper spacing */
+  border-radius: 2px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fade-in 0.5s ease-in-out;
+  font-family: 'Lora', serif;
+  z-index: 1000; /* Ensure it appears on top of other elements */
+}
+
+/* Adjustments for larger content */
+.error-popup h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.error-popup p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.error-popup .close-btn {
+  margin-top: 1rem;
+}
+
+
+/* Optional Media Query for Extra Small Screens */
+@media (max-width: 480px) {
+  .error-popup {
+    width: 95%; /* Nearly full width on small screens */
+    padding: 1rem 1.5rem;
+  }
+}
+
+
+.error-popup h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.error-popup p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.error-popup .close-btn {
+  background: #fff;
+  color: #e74c3c;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.error-popup .close-btn:hover {
+  background: #f9f9f9;
+}
+
+/* Animation for the popup */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  form {
+    width: 90%;
+  }
+}
+/* Page Heading */
+h1 {
+  font-family: 'Montserrat', sans-serif; /* Clean and geometric font */
+  font-size: 3rem; /* Larger and more prominent */
+  color: #2c3e50; /* Deep gray for professionalism */
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px; /* Slight letter spacing for readability */
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  width: 120px;
+  height: 4px;
+  background-color: #3498db; /* Matches the theme's primary color */
+  display: block;
+  margin: 10px auto 0 auto;
+  border-radius: 5px;
+}
