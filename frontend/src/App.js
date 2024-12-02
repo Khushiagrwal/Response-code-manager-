@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginPage from './components/LoginPage';  // without .js
-import SearchPage from './components/SearchPage';  // without .js
-import ListPage from './components/ListPage';  // without .js
-import Header from './components/Header';  // without .js
+import LoginPage from './components/LoginPage';  
+import SearchPage from './components/SearchPage'; 
+import ListPage from './components/ListPage';  
+import Header from './components/Header';  
 import '../src/App.css';
 
 function App() {

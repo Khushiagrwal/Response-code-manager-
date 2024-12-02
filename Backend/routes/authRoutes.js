@@ -9,11 +9,12 @@ const router = express.Router();
 router.post('/signup', async (req, res) => {
   const { username, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
-
+  console.log(hashedPassword)
   const newUser = new User({ username, password: hashedPassword });
   try {
     await newUser.save();
     const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // console.log(token)
     res.status(201).json({ message: 'Signup successful', token });
   } catch (err) {
     res.status(500).json({ error: err.message });

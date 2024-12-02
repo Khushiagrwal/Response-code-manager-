@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FaSearch  } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa';
 import '../styles/SearchPage.css';
@@ -12,7 +11,7 @@ const SearchPage = () => {
   const [saveMessage, setSaveMessage] = useState('');
   const [name, setName] = useState('');
   const [isErrorPopupVisible, setIsErrorPopupVisible] = useState(false); // Error popup visibility state
-  const navigate = useNavigate();
+  
 
   // Fetch Images with error handling and validation
   const fetchImages = async () => {
@@ -32,13 +31,22 @@ const SearchPage = () => {
     setLoading(true);
     setError('');
     setSaveMessage('');
-
+    // console.log("your query is here " + query)
     try {
-      const response = await fetch(`http://localhost:5000/api/search?q=${query}`);
+      const token = localStorage.getItem('token')
+      const response = await fetch(`http://localhost:5000/api/search?q=${query}`,
+        {
+          headers:{
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
       if (!response.ok) throw new Error(await response.text());
-
+      
       const data = await response.json();
+
       setImages(data.images || []);
+
     } catch (err) {
       setError(err.message || 'Failed to fetch images');
       setIsErrorPopupVisible(true);

@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const {verifyToken} =require("./middleware/authMiddleware")
+
 
 // Import routes
 const authRoutes = require('./routes/authRoutes');
@@ -31,8 +33,6 @@ app.use(cors());
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
 })
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
@@ -42,7 +42,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/lists', listRoutes);
 
 // Search Route
-app.get('/api/search', (req, res) => {
+app.get('/api/search',verifyToken, (req, res) => {
   const query = req.query.q;
   const images = [];
 

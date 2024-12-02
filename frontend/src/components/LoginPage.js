@@ -19,6 +19,7 @@ function LoginPage() {
     });
     const data = await response.json();
     if (data.token) {
+      console.log(data.token)
       localStorage.setItem('token', data.token);
       navigate('/search');
     } else {

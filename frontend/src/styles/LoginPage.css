@@ -19,8 +19,7 @@ div {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
-              url('https://example.com/modern-abstract-background.jpg'); /* Replace with a modern abstract design */
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

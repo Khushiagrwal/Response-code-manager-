@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate for v6
-import { FaArrowLeft } from 'react-icons/fa'; // Importing an icon
+import { useNavigate } from 'react-router-dom'; 
+import { FaArrowLeft } from 'react-icons/fa'; 
 import "../styles/ListPage.css";
 
 const ListPage = () => {
   const [lists, setLists] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Use navigate for v6
+  const [editId, setEditId] = useState(null); // Track which list is being edited
+  const [newName, setNewName] = useState(""); // Track the new name
+  const navigate = useNavigate();
 
   const fetchLists = async () => {
     setLoading(true);
@@ -39,7 +41,7 @@ const ListPage = () => {
     if (!token) return alert('You must be logged in to delete a list.');
 
     try {
-      const response = await axios.delete(`http://localhost:5000/api/lists/${listId}`, {
+      await axios.delete(`http://localhost:5000/api/lists/${listId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -49,14 +51,41 @@ const ListPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchLists();
-  }, []);
+  const updateListName = async (listId, newName) => {
+    const token = localStorage.getItem('token');
+    if (!token) return alert('You must be logged in to edit a list.');
 
-  // Handle back icon click - navigate to /search
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/api/lists/${listId}`,
+        { name: newName },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      setLists(
+        lists.map((list) =>
+          list._id === listId ? { ...list, name: response.data.name } : list
+        )
+      );
+      setEditId(null); // Reset editing state
+      setNewName("");
+    } catch (err) {
+      alert('Failed to update list name.');
+    }
+  };
+
+  const handleEditClick = (listId, currentName) => {
+    setEditId(listId);
+    setNewName(currentName);
+  };
+
   const handleBackIconClick = () => {
     navigate('/search');
   };
+
+  useEffect(() => {
+    fetchLists();
+  }, []);
 
   return (
     <div className="list-page">
@@ -67,7 +96,26 @@ const ListPage = () => {
         <ul>
           {lists.map((list) => (
             <li key={list._id}>
-              <h3>{list.name}</h3>
+              {editId === list._id ? (
+                <>
+                  <input
+                    type="text"
+                    value={newName}
+                    onChange={(e) => setNewName(e.target.value)}
+                  />
+                  <button onClick={() => updateListName(list._id, newName)}>
+                    Save
+                  </button>
+                  <button onClick={() => setEditId(null)}>Cancel</button>
+                </>
+              ) : (
+                <>
+                  <h3>{list.name}</h3>
+                  <button onClick={() => handleEditClick(list._id, list.name)}>
+                    Edit
+                  </button>
+                </>
+              )}
               <ul>
                 {list.images.map((image, index) => (
                   <li key={index}>
@@ -83,7 +131,7 @@ const ListPage = () => {
         <p>No lists saved yet.</p>
       )}
       <div className="back-icon" onClick={handleBackIconClick}>
-        <FaArrowLeft size={30} /> {/* Left arrow icon */}
+        <FaArrowLeft size={30} />
       </div>
     </div>
   );
