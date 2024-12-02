@@ -12,7 +12,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/signup';
-    const response = await fetch(`http://localhost:5000${endpoint}`, {
+    const response = await fetch(`https://response-code-manager-beta.vercel.app${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),

@@ -20,7 +20,7 @@ const ListPage = () => {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('Authorization token is missing.');
 
-      const response = await axios.get('http://localhost:5000/api/lists', {
+      const response = await axios.get('https://response-code-manager-beta.vercel.app/api/lists', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -41,7 +41,7 @@ const ListPage = () => {
     if (!token) return alert('You must be logged in to delete a list.');
 
     try {
-      await axios.delete(`http://localhost:5000/api/lists/${listId}`, {
+      await axios.delete(`https://response-code-manager-beta.vercel.app/api/lists/${listId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -57,7 +57,7 @@ const ListPage = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/lists/${listId}`,
+        `https://response-code-manager-beta.vercel.app/api/lists/${listId}`,
         { name: newName },
         { headers: { Authorization: `Bearer ${token}` } }
       );

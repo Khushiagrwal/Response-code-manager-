@@ -34,7 +34,7 @@ const SearchPage = () => {
     // console.log("your query is here " + query)
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`http://localhost:5000/api/search?q=${query}`,
+      const response = await fetch(`https://response-code-manager-beta.vercel.app/api/search?q=${query}`,
         {
           headers:{
             Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ const SearchPage = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/lists', {
+      const response = await fetch('https://response-code-manager-beta.vercel.app/api/lists', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
